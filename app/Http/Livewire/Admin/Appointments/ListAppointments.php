@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Admin\Appointments;
 
+use App\Exports\AppointmentExport;
 use Livewire\Component;
 use App\Http\Livewire\Admin\AdminComponent;
 use App\Models\Appointment;
+use Maatwebsite\Excel\Excel;
 
 class ListAppointments extends AdminComponent
 {
@@ -104,7 +106,7 @@ class ListAppointments extends AdminComponent
     // Export data excel (costum)
     public function exportExcel()
     {
-        
+        return (new AppointmentExport($this->selectedRows))->download('Data Appointments.xls');
     }
 
     // Untuk drag and drop data appointment berdasarkan id
